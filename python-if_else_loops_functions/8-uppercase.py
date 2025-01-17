@@ -2,6 +2,7 @@
 
 def uppercase(str):
     for char in str:
-        if ord(char) >= 65 and ord(char) <= 90:
-            return False
-    return True
+        if ord(char) >= 97 and ord(char) <= 122:
+            char = chr(ord(char) - 32)
+        print(char, end='')
+    print()

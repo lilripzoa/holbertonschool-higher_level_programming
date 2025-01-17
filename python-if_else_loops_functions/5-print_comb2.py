@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 
-space = ", "
 last_number = ord('c')
 
 for x in range(99):
-        print('{}{}' .format(x, space,), end=' ')
-print('{}'.format(last_number))
+    if x < 98:
+        print("{:02d}" .format(x), end=', ')
+    else:
+        print('{:02d}'.format(x))

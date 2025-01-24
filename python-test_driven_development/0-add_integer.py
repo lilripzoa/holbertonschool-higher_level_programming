@@ -55,17 +55,9 @@ def add_integer(a, b=98):
         ...
     TypeError: a or b must be a valid number
     """
-
-    if isinstance(a, (float, int)):
-        if math.isnan(a) or math.isinf(a):
-            raise TypeError("a or b must be a valid number")
-    else:
+    
+    if type(a) not in [int, float] or a != a:
         raise TypeError("a must be an integer")
-
-    if isinstance(b, (float, int)):
-        if math.isnan(b) or math.isinf(b):
-            raise TypeError("a or b must be a valid number")
-    else:
+    if type(b) not in [int, float] or b != b:
         raise TypeError("b must be an integer")
-
     return int(a) + int(b)

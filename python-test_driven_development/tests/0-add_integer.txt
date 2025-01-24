@@ -1,15 +1,25 @@
->>> import sys
->>> sys.path.append('.')
->>> from 0-add_integer import add_integer
+>>> import importlib
+>>> add_integer_module = importlib.import_module("0-add_integer")
+>>> add_integer = add_integer_module.add_integer
+
 >>> add_integer(1, 2)
 3
+
 >>> add_integer(100, -2)
 98
+
 >>> add_integer(2)
 100
+
 >>> add_integer(100.3, -2)
 98
+
 >>> add_integer(4, "School")
-b must be an integer
+Traceback (most recent call last):
+    ...
+TypeError: b must be an integer
+
 >>> add_integer(None)
-a must be an integer
+Traceback (most recent call last):
+    ...
+TypeError: a must be an integer

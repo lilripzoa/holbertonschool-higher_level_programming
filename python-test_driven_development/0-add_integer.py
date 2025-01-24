@@ -3,7 +3,8 @@
 """
 This module provides a function `add_integer` to add two integers or floats.
 
-The function has two parameters, `a` and `b`, and returns their sum as an integer.
+The function has two parameters, `a` and `b`,
+and returns their sum as an integer.
 If either `a` or `b` is not an integer or float, a `TypeError` will be raised.
 
 Examples:
@@ -21,7 +22,9 @@ Traceback (most recent call last):
 TypeError: b must be an integer
 """
 
+
 def add_integer(a, b=98):
+
     """
     Add two integers
     parameters: a, b (integers) or (floats)
@@ -44,6 +47,7 @@ def add_integer(a, b=98):
         ...
     TypeError: b must be an integer
     """
+
     if not isinstance(a, (int, float)):
         raise TypeError("a must be an integer")
     if not isinstance(b, (int, float)):

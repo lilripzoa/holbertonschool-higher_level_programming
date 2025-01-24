@@ -46,10 +46,26 @@ def add_integer(a, b=98):
     traceback (most recent call last):
         ...
     TypeError: b must be an integer
+        >>> add_integer(float('nan'), 2)
+    Traceback (most recent call last):
+        ...
+    TypeError: a or b must be a valid number
+    >>> add_integer(2, float('nan'))
+    Traceback (most recent call last):
+        ...
+    TypeError: a or b must be a valid number
     """
 
-    if not isinstance(a, (int, float)):
+    if isinstance(a, (float, int)):
+        if math.isnan(a) or math.isinf(a):
+            raise TypeError("a or b must be a valid number")
+    else:
         raise TypeError("a must be an integer")
-    if not isinstance(b, (int, float)):
+
+    if isinstance(b, (float, int)):
+        if math.isnan(b) or math.isinf(b):
+            raise TypeError("a or b must be a valid number")
+    else:
         raise TypeError("b must be an integer")
+
     return int(a) + int(b)

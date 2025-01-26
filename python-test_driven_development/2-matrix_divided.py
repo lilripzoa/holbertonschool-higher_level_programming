@@ -1,50 +1,31 @@
 #!/usr/bin/python3
 
 """
-    this module provides a function `matrix_divided`
-    to divide all elements of a matrix.
+     Write a function that divides all elements of a matrix.
 
-    the function has two parameters, `matrix` and `div`,
-    and returns a new matrix with all elements divided by div.
-    If matrix is not a list of lists of integers or floats,
-    a `TypeError` will be raised.
-    If matrix contains rows of different sizes, a `TypeError` will be raised.
-    If div is not an integer or float, a `TypeError` will be raised.
-    If div is 0, a `ZeroDivisionError` will be raised.
+    Prototype: def matrix_divided(matrix, div):
+    matrix must be a list of lists of integers or floats,
+    otherwise raise a TypeError exception with the message
+    matrix must be a matrix (list of lists)
+    of integers/floats
 
-    exemple:
-    >>> matrix = [
-    ...     [1, 2, 3],
-    ...     [4, 5, 6]
-    ... ]
-    >>> print(matrix_divided(matrix, 3))
-    [[0.33, 0.67, 1.0], [1.33, 1.67, 2.0]]
-    >>> print(matrix)
-    [[1, 2, 3], [4, 5, 6]]
+    Each row of the matrix must be of the same size,
+    otherwise raise a TypeError exception
+    with the message Each row of the matrix must have
+    the same size
 
-    try:
-    ...     print(matrix_divided(matrix, 0))
-    ... except Exception as e:
-    ...     print(e)
-    division by zero
+    div must be a number (integer or float),
+    otherwise raise a TypeError exception
+    with the message div must be a number
 
-    trace:
-    >>> matrix_divided(1, 2)
-    Traceback (most recent call last):
-        ...
-    TypeError: matrix must be a matrix (list of lists) of integers/floats
-    >>> matrix_divided([[1, 2, 3], [4, 5, 6], [7, 8, 9]], 2)
-    Traceback (most recent call last):
-        ...
-    TypeError: Each row of the matrix must have the same size
-    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 'a')
-    Traceback (most recent call last):
-        ...
-    TypeError: div must be a number
-    >>> matrix_divided([[1, 2, 3], [4, 5, 6]], 0)
-    Traceback (most recent call last):
-        ...
-    ZeroDivisionError: division by zero
+    div can’t be equal to 0, otherwise raise a
+    ZeroDivisionError exception
+    with the message division by zero
+
+    All elements of the matrix should be divided by div,
+    rounded to 2 decimal places
+    Returns a new matrix
+    You are not allowed to import any module
 """
 
 
@@ -60,7 +41,7 @@ def matrix_divided(matrix, div):
         raise TypeError(list_error)
     if type(div) is not int and type(div) is not float:
         raise TypeError(div_int_error)
-    if div == 0:
+    if div is 0:
         raise ZeroDivisionError(div_zero_error)
     longitud = len(matrix[0])
     for lista in matrix:

@@ -37,7 +37,7 @@ def text_indentation(text):
         if text[i] in delimeters:
             print(text[i], end="\n\n")
             i += 1
-            
+
             while i < len(text) and text[i] == " ":
                 i += 1
         else:

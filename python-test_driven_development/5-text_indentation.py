@@ -14,32 +14,46 @@ all characters must be separated by 2 new lines
 
 
 def text_indentation(text):
-    """Prints text with 2 new lines after each of these characters: ., ? and :
-
-    Args:
-        text: The text to be printed.
-
-    Raises:
-        TypeError: if text is not a string
-        no space at the beginning of the printed lines
-        text is a string
-        must use the characters ., ? and :
-        all characters must be separated by 2 new lines
     """
 
-    if not isinstance(text, str):
-        raise TypeError("text must be a string")
+    Prints a text with indentation
 
-    delimeters = ".?:"
+    Args:
+        text (str): The text to prints.
 
-    i = 0
-    while i < len(text):
-        if text[i] in delimeters:
-            print(text[i], end="\n\n")
-            i += 1
+    Raises:
+        TypeError: If `text` isn't string.
 
-            while i < len(text) and text[i] == " ":
-                i += 1
-        else:
-            print(text[i], end="")
-            i += 1
+    """
+
+    if type(text) is not str:
+        raise TypeError('text must be a string')
+
+    text_length = len(text)
+    idx = 0
+    new_string = ''
+    starting = True
+
+    while idx < text_length:
+        if text[idx] == ' ' and starting is True:
+            idx += 1
+            continue
+
+        starting = False
+
+        if text[idx] in '.?:':
+            new_string += text[idx]
+            new_string += '\n'
+            new_string += '\n'
+            idx += 1
+
+            while idx < text_length and text[idx] == ' ':
+                idx += 1
+
+            continue
+
+        if idx < text_length:
+            new_string += text[idx]
+            idx += 1
+
+    print(new_string, end='')

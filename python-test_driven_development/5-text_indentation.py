@@ -30,11 +30,16 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    for delimeter in "?:.":
-        words = (delimeter + "\n\n").join(
-                [index.strip(" ") for index in words.split(delimeter)])
+    delimeters = ".?:"
 
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testfile("tests/5-text_indentation.txt")
+    i = 0
+    while i < len(text):
+        if text[i] in delimeters:
+            print(text[i], end="\n\n")
+            i += 1
+            
+            while i < len(text) and text[i] == " ":
+                i += 1
+        else:
+            print(text[i], end="")
+            i += 1

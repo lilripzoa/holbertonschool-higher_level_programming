@@ -14,6 +14,7 @@ all characters must be separated by a new line
 size is the size length of the square
 """
 
+
 def print_square(size):
     """Prints a square with the character #.
 

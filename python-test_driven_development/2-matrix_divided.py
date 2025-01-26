@@ -30,6 +30,7 @@
 
 
 def matrix_divided(matrix, div):
+    """ Function that divides all elements of a matrix """
     errorMessage =
     "matrix must be a matrix(list of lists) of integers/floats"
     if not matrix:

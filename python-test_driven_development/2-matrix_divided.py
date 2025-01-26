@@ -19,31 +19,121 @@ def matrix_divided(matrix, div):
         a new matrix with elements rounded to 2 decimal places.
     """
 
-    if not isinstance(matrix, list) or len(matrix) == 0 or not matrix[0]:
-        raise TypeError("matrix must be a matrix (list of lists) " +
-                        "of integers/floats")
+    check_for_list(matrix)
+    check_for_divisor(div)
 
-    for row in matrix:
-        if len(row) == 0:
-            raise TypeError("matrix must be a matrix (list of lists) " +
-                            "of integers/floats")
-        for x in row:
-            if type(x) is not int and type(x) is not float:
-                raise TypeError("matrix must be a matrix (list of lists) " +
-                                "of integers/floats")
+    elem_sizes = set()
+    new_list = list()
 
-    len_rows = []
-    for row in matrix:
-        len_rows.append(len(row))
-    if not all(elem == len_rows[0] for elem in len_rows):
-        raise TypeError("Each row of the matrix must have the same size")
+    for elem in matrix:
+        if check_for_list(elem) is False:
+            raises_matrix_type_error()
 
-    if type(div) is not int and type(div) is not float:
-        raise TypeError("div must be a number")
+        elem_sizes = check_row_size_inconsistency(elem_sizes, elem)
+        values = []
+
+        for value in elem:
+            if check_for_number(value) is False:
+                raises_matrix_type_error()
+
+            values.append(round(value / div, 2))
+
+        new_list.append(values)
+
+    return new_list
+
+
+def check_for_list(value):
+    """
+
+    Check if the value is of type list
+
+    Args:
+        value (any): The value to verify.
+
+    Raises:
+        TypeError: If `value` isn't a list.
+
+    """
+
+    if type(value) is not list or len(value) == 0:
+        raises_matrix_type_error()
+
+
+def check_for_divisor(div):
+    """
+
+    Check if the divisor is integer, float or zero
+
+    Args:
+        div (any): The divisor to verify.
+
+    Raises:
+        TypeError: If `value` isn't integer or float.
+        ZeroDivisionError: If `div` is equal to `0`.
+
+    """
+
+    if check_for_number(div) is False:
+        raise TypeError('div must be a number')
 
     if div == 0:
-        raise ZeroDivisionError("division by zero")
+        raise ZeroDivisionError('division by zero')
 
-    new_matrix = [[round(x / div, 2) for x in row] for row in matrix]
 
-    return new_matrix
+def check_for_number(value):
+    """Check if the value is integer or float
+
+    Args:
+        value (any): The value to verify.
+
+    Returns:
+        bool: True if successful, False otherwise.
+
+    """
+
+    if type(value) is not int and type(value) is not float:
+        return False
+
+    """ Check for a NaN value """
+    if value != value:
+        return False
+
+    return True
+
+
+def check_row_size_inconsistency(elem_sizes, row):
+    """Checks the size consistency of rows in a matrix
+
+    Check if all rows in the matrix are inconsistently sized
+
+    Args:
+        elem_sizes (:obj:`set` of :obj:`int`): Size of each row matrix.
+        row (list): A row with elements to divide.
+
+    Returns:
+        set: A unique consistent size between all rows.
+
+    Raises:
+        TypeError: If `elem_sizes` has more than one size in its contents.
+
+    """
+
+    elem_sizes.add(len(row))
+
+    if len(elem_sizes) > 1:
+        raise TypeError('Each row of the matrix must have the same size')
+
+    return elem_sizes
+
+
+def raises_matrix_type_error():
+    """Raises a Matrix TypeError
+
+    Raises:
+        TypeError: If `matrix` list of lists of integers or floats.
+
+    """
+
+    raise TypeError('matrix must be a matrix \
+(list of lists) of integers/floats')

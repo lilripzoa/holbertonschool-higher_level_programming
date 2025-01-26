@@ -2,7 +2,7 @@ The ``matrix_divided`` module
 ======================
 
 Using ``matrix_divided``
--------------------
+-----------------------
 
 Write a function that divides all elements of a matrix.
 

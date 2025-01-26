@@ -27,18 +27,11 @@ def text_indentation(text):
         all characters must be separated by 2 new lines
     """
 
-    if not isinstance(text, str):
+    if type(text) is not str:
         raise TypeError("text must be a string")
 
-    text = text.strip()
+    for delim in ".:?":
+        text = (delim + "\n\n").join(
+            [line.strip(" ") for line in text.split(delim)])
 
-    for i in range(len(text)):
-        if text[i] == '.' or text[i] == '?' or text[i] == ':':
-            print(text[i])
-            print()
-            if i + 1 < len(text) and text[i + 1] == ' ':
-                i += 1
-            while i + 1 < len(text) and text[i + 1] == ' ':
-                i += 1
-        else:
-            print(text[i], end="")
+    print("{}".format(text), end="")

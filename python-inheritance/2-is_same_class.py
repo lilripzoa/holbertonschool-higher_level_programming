@@ -5,15 +5,6 @@ object is exactly an instance of the specified class"""
 
 
 def is_same_class(obj, a_class):
-    """
-    Checks if an object is an instance of, or if the
-    object is an instance of
-    a class that inherited from, the specified class.
-    Args:
-        obj: The object to check.
-        a_class: The class to match the type of obj against.
-    Returns:
-        True if obj is an instance or inherited
-        instance of a_class, False otherwise.
-    """
+    """Function that return true if
+    object is exactly an instance of the specified class"""
     return type(obj) is a_class

@@ -1,11 +1,15 @@
 #!/usr/bin/python3
-"""Add all arguments to a Python list,
-and then save them to a file"""
-import sys
+"""
+Loads an object from a text file containing JSON data.
+"""
+import json
 
 
-def add_item():
-    """Add all arguments to a Python list,
-    and then save them to a file"""
+def load_from_json_file(filename):
+    """
+    Loads an object from a text file containing JSON data.
+    Args:
+    filename (str): The name of the file to load from.
+    """
     with open(filename, 'r', encoding="utf-8") as fic:
         return json.load(fic)

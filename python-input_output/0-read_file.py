@@ -2,6 +2,7 @@
 """Read a file and print its contents
 to the standard output."""
 
+
 def read_file(filename=""):
     """
     Read a file and print its contents
